@@ -21,6 +21,17 @@ const ContextProvider = (props)=> {
             }, 75*index);
  }
 
+  const staticPrompt = `You are an intelligent solar energy assistant. Your goal is to provide accurate and helpful information about:
+- Solar panel technology
+- Installation processes
+- Maintenance requirements
+- Cost & ROI analysis
+- Industry regulations
+- Market trends
+Respond in a clear and concise manner, tailored to the user's level of expertise. 
+
+User Query: `;
+
   const onSent = async(prompt) => {
     
     setResultData("")
@@ -28,12 +39,14 @@ const ContextProvider = (props)=> {
     setShowResult(true);
     let response;
     if(prompt !== undefined){
-        response = await run(`${prompt}`);
         setRecentPrompt(prompt);
+        setPrevPrompts(prev => [...prev, prompt]);
+        response = await run(staticPrompt + prompt);
+        
     }else{
         setPrevPrompts(prev => [...prev, input]);
         setRecentPrompt(input);
-        response = await run(input);
+        response = await run(staticPrompt + input);
     }
     let responseArray = response.split("**")
     let newResponse = "";

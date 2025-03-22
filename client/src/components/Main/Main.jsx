@@ -82,7 +82,7 @@ const Main = () => {
             <div className='absolute right-2 flex items-center gap-3'>
               <GrGallery className='h-5 w-5 text-gray-500 cursor-pointer hover:text-gray-700' />
               <IoIosMic className='h-5 w-5 text-gray-500 cursor-pointer hover:text-gray-700' />
-              <button onClick={()=> onSent()} className='p-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors'>
+              <button onClick={()=> onSent(input)} disabled={!input.trim()} className='p-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors'>
                 <IoSendSharp className='h-5 w-5' />
               </button>
             </div>
